@@ -11,7 +11,6 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .font-display { font-family: 'Space Grotesk', sans-serif; }
-    /* Bayang blok tegas tanpa kabur */
     .hard-shadow { box-shadow: 4px 4px 0px #0f172a; }
     .hard-shadow-sm { box-shadow: 2px 2px 0px #0f172a; }
     .hard-shadow-lg { box-shadow: 6px 6px 0px #0f172a; }
@@ -45,7 +44,7 @@
   <!-- Kandungan Utama -->
   <main class="max-w-5xl mx-auto px-5 py-10 flex-1 w-full space-y-16">
 
-    <!-- Hero / Pengenalan Diri & Produk -->
+    <!-- Hero / Pengenalan & Pilihan Pembelian -->
     <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-2">
       <div class="md:col-span-8 space-y-5">
         <div class="inline-flex items-center gap-2 bg-emerald-100 border-2 border-slate-900 px-3 py-1 rounded-full text-xs font-bold">
@@ -59,25 +58,29 @@
         </h1>
         
         <p class="text-slate-700 text-base sm:text-lg leading-relaxed max-w-xl">
-          Saya bina game interaktif ini untuk bantu murid mengulang kaji topik teras secara santai di rumah. Tiada langganan bulanan mengejut, tiada iklan merapu. Beli kod sekali di Shopee, aktifkan akaun, dan terus main.
+          Modul game interaktif berpandukan sukatan KSSR untuk murid mengulang kaji secara santai dan berfokus. Bayar terus melalui FPX perbankan dalam talian untuk akses serta-merta, atau beli kod baucar di Shopee.
         </p>
 
+        <!-- Butang Tindakan: ToyyibPay / Shopee / Tebus -->
         <div class="pt-2 flex flex-wrap gap-3">
-          <a href="https://shopee.com.my" target="_blank" class="bg-[#0055FF] hover:bg-[#0044cc] text-white font-bold text-sm px-6 py-3 rounded-xl border-2 border-slate-900 hard-shadow transition-transform active:translate-x-1 active:translate-y-1">
-            Beli Akses di Shopee →
+          <button onclick="openModal()" class="bg-[#0055FF] hover:bg-[#0044cc] text-white font-bold text-sm px-6 py-3.5 rounded-xl border-2 border-slate-900 hard-shadow transition-transform active:translate-x-1 active:translate-y-1 flex items-center gap-2">
+            <span>⚡</span> Beli Terus (FPX RM15)
+          </button>
+          <a href="https://shopee.com.my" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold text-sm px-5 py-3.5 rounded-xl border-2 border-slate-900 hard-shadow transition-transform active:translate-x-1 active:translate-y-1 flex items-center gap-2">
+            <span>🛒</span> Shopee
           </a>
-          <a href="redeem.html" class="bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm px-6 py-3 rounded-xl border-2 border-slate-900 hard-shadow transition-transform active:translate-x-1 active:translate-y-1">
-            Dah Ada Kod? Tebus Sini
+          <a href="redeem.html" class="bg-white hover:bg-slate-50 text-slate-900 font-bold text-sm px-5 py-3.5 rounded-xl border-2 border-slate-900 hard-shadow transition-transform active:translate-x-1 active:translate-y-1">
+            Dah Ada Kod? Tebus
           </a>
         </div>
       </div>
 
-      <!-- Kad Pengesahan / Stat Ringkas Guru -->
+      <!-- Kad Pengesahan / Kotak Info Guru -->
       <div class="md:col-span-4">
         <div class="bg-amber-100 border-2 border-slate-900 rounded-2xl p-6 hard-shadow-lg space-y-4">
           <div class="text-xs font-mono font-bold uppercase tracking-widest text-slate-600">Nota Guru Penggubal</div>
           <p class="text-sm font-semibold text-slate-900 leading-snug">
-            "Fokus saya mudah: murid tak rasa macam dipaksa buat latihan, tapi otak mereka tetap memproses konsep KBAT yang diajar dalam silibus."
+            "Fokus saya mudah: murid tak rasa macam dipaksa buat latihan, tapi otak mereka tetap memproses konsep KBAT yang diajar dalam bilik darjah."
           </p>
           <div class="pt-3 border-t-2 border-slate-900/20 flex items-center justify-between text-xs font-mono">
             <span>Disusun oleh:</span>
@@ -87,73 +90,72 @@
       </div>
     </section>
 
-    <!-- Alur Mudah 3 Langkah (Tanpa Ikon Klise) -->
+    <!-- Alur Mudah 3 Langkah -->
     <section class="space-y-4">
-      <div class="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Cara Ia Berfungsi</div>
+      <div class="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Aliran Pembelian & Akses</div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow">
           <div class="font-mono text-2xl font-black text-slate-400 mb-2">01</div>
-          <h3 class="font-bold text-base text-slate-900">Pilih Modul di Shopee</h3>
+          <h3 class="font-bold text-base text-slate-900">Pilih Saluran Bayaran</h3>
           <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-            Pilih siri game mengikut tahun atau topik. Kod baucar dihantar secara digital terus ke Shopee Chat anda.
+            Pilih bayar terus menggunakan ToyyibPay FPX di web (RM15) atau buat pembelian kod di kedai Shopee kami.
           </p>
         </div>
 
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow">
           <div class="font-mono text-2xl font-black text-slate-400 mb-2">02</div>
-          <h3 class="font-bold text-base text-slate-900">Aktifkan Kod Anda</h3>
+          <h3 class="font-bold text-base text-slate-900">Aktifkan Akaun Murid</h3>
           <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-            Masukkan kod unik di halaman penebusan portal ini dan cipta profil murid dalam masa bawah satu minit.
+            Akses diaktifkan terus selepas bayaran FPX berjaya, atau masukkan kod unik di halaman penebusan portal.
           </p>
         </div>
 
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow">
           <div class="font-mono text-2xl font-black text-slate-400 mb-2">03</div>
-          <h3 class="font-bold text-base text-slate-900">Terus Main di Pelayar</h3>
+          <h3 class="font-bold text-base text-slate-900">Main Tanpa Had</h3>
           <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-            Berjalan lancar di telefon, iPad, tablet Android mahupun laptop tanpa perlu muat turun aplikasi berat.
+            Berjalan pantas di telefon pintar, tablet mahupun komputer tanpa gangguan sebarang iklan luaran.
           </p>
         </div>
 
       </div>
     </section>
 
-    <!-- Bahagian Blog / Catatan Cikgu (Diambil dari articles.json) -->
+    <!-- Seksyen Blog / Catatan Cikgu (articles.json) -->
     <section id="catatan" class="space-y-6 pt-4">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b-2 border-slate-900 pb-3">
         <div>
           <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Catatan & Pengumuman</h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Perkembangan modul baharu dan panduan untuk ibu bapa.</p>
+          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Perkembangan modul terbaharu dan panduan untuk ibu bapa.</p>
         </div>
-        <span class="font-mono text-xs font-bold text-slate-500">Kemas kini langsung via articles.json</span>
+        <span class="font-mono text-xs font-bold text-slate-500">Auto-sync via articles.json</span>
       </div>
 
-      <!-- Container Artikel -->
+      <!-- Bekas Grid Artikel -->
       <div id="articles-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Keadaan Muat Data (Skeleton) -->
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow h-44 animate-pulse"></div>
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow h-44 animate-pulse hidden md:block"></div>
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow h-44 animate-pulse hidden md:block"></div>
       </div>
     </section>
 
-    <!-- Soalan Lazim (FAQ Ringkas Padat) -->
+    <!-- Soalan Lazim (FAQ) -->
     <section class="space-y-4">
       <div class="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Perkara Yang Selalu Ditanya</div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5">
-          <h4 class="font-bold text-sm text-slate-900">Ada had masa bermain atau tarikh luput?</h4>
+          <h4 class="font-bold text-sm text-slate-900">Berapa lama akses sah selepas bayar?</h4>
           <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
-            Bergantung kepada pakej di Shopee. Kebanyakan modul kami memberikan akses sepanjang tahun sesi persekolahan tersebut tanpa caj bulanan berulang.
+            Akses diberikan untuk sepanjang sesi persekolahan kalendar tahun semasa. Tiada sebarang bayaran langganan bulanan mengejut.
           </p>
         </div>
 
         <div class="bg-white border-2 border-slate-900 rounded-xl p-5">
-          <h4 class="font-bold text-sm text-slate-900">Perlu install apa-apa software atau APK?</h4>
+          <h4 class="font-bold text-sm text-slate-900">Perlu muat turun fail APK atau aplikasi khas?</h4>
           <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
-            Tidak perlu. Semuanya berasaskan web moden (HTML5). Hanya buka pelayar Chrome atau Safari dan mula bermain.
+            Tidak perlu. Keseluruhan modul dibina berasaskan standard web moden. Boleh dimainkan terus di pelayar Chrome atau Safari.
           </p>
         </div>
 
@@ -162,7 +164,7 @@
 
   </main>
 
-  <!-- Kaki Laman Ringkas -->
+  <!-- Kaki Laman -->
   <footer class="border-t-2 border-slate-900 bg-white mt-12 py-8 px-5">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
       <div class="font-mono text-slate-600 text-center sm:text-left">
@@ -175,8 +177,104 @@
     </div>
   </footer>
 
-  <!-- Pembaca JSON Dinamik -->
+  <!-- MODAL PEMBAYARAN TOYYIBPAY (Tersembunyi secara lalai) -->
+  <div id="payment-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-slate-900 rounded-2xl max-w-md w-full p-6 hard-shadow-lg relative space-y-4">
+      
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-900 font-mono font-bold text-lg">
+        ✕
+      </button>
+
+      <div>
+        <span class="bg-blue-100 text-blue-800 text-xs font-mono font-bold px-2.5 py-0.5 rounded border border-blue-900">
+          Pembayaran Selamat FPX
+        </span>
+        <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Dapatkan Akses Penuh Modul</h3>
+        <p class="text-xs text-slate-600 mt-1">
+          Sila isi maklumat ringkas di bawah. Anda akan dibawa ke portal perbankan dalam talian ToyyibPay untuk pengesahan bayaran.
+        </p>
+      </div>
+
+      <!-- Borang Pembeli -->
+      <form id="pay-form" onsubmit="handlePayment(event)" class="space-y-3 pt-2">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Nama Ibu Bapa / Pembeli</label>
+          <input type="text" id="buyer-name" required placeholder="Contoh: Siti Aisyah" class="w-full text-sm px-3.5 py-2.5 rounded-lg border-2 border-slate-900 focus:bg-amber-50 outline-none transition" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Alamat Emel (Untuk terima resit & akses)</label>
+          <input type="email" id="buyer-email" required placeholder="contoh@gmail.com" class="w-full text-sm px-3.5 py-2.5 rounded-lg border-2 border-slate-900 focus:bg-amber-50 outline-none transition" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Nombor Telefon (WhatsApp)</label>
+          <input type="tel" id="buyer-phone" required placeholder="0123456789" class="w-full text-sm px-3.5 py-2.5 rounded-lg border-2 border-slate-900 focus:bg-amber-50 outline-none transition" />
+        </div>
+
+        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 flex justify-between items-center text-xs">
+          <span class="font-semibold text-slate-600">Jumlah Bayaran (Akses Penuh):</span>
+          <span class="font-mono text-base font-extrabold text-slate-900">RM 15.00</span>
+        </div>
+
+        <button type="submit" id="btn-submit-pay" class="w-full bg-[#0055FF] hover:bg-[#0044cc] text-white font-bold text-sm py-3 rounded-xl border-2 border-slate-900 hard-shadow-sm transition-transform active:translate-x-0.5 active:translate-y-0.5 flex justify-center items-center gap-2">
+          <span>Teruskan ke Perbankan Dalam Talian</span>
+          <span>→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: Modal & Integrasi API ToyyibPay & Artikel -->
   <script>
+    // Kawalan Modal
+    function openModal() {
+      document.getElementById('payment-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('payment-modal').classList.add('hidden');
+    }
+
+    // Tangani Penghantaran Borang ke Backend Vercel ToyyibPay
+    async function handlePayment(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit-pay');
+      btn.disabled = true;
+      btn.innerText = 'Menghubungkan ke Bank...';
+
+      const payload = {
+        name: document.getElementById('buyer-name').value.trim(),
+        email: document.getElementById('buyer-email').value.trim(),
+        phone: document.getElementById('buyer-phone').value.trim(),
+        amount: 15
+      };
+
+      try {
+        const response = await fetch('/api/create-bill', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (data.paymentUrl) {
+          // Bawa pengguna terus ke pintu masuk ToyyibPay FPX
+          window.location.href = data.paymentUrl;
+        } else {
+          alert(data.message || 'Ralat menjana bil pembayaran. Sila cuba sebentar lagi.');
+          btn.disabled = false;
+          btn.innerText = 'Teruskan ke Perbankan Dalam Talian →';
+        }
+      } catch (err) {
+        alert('Gagal menghubungi pelayan pembayaran. Sila periksa sambungan internet.');
+        btn.disabled = false;
+        btn.innerText = 'Teruskan ke Perbankan Dalam Talian →';
+      }
+    }
+
+    // Memuatkan Artikel Dinamik daripada articles.json
     async function loadArticles() {
       const container = document.getElementById('articles-container');
       try {
