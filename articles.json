@@ -4,13 +4,15 @@
     "title": "Membina Sistem Pengkalan Data Murid Menggunakan Apps Script",
     "date": "4 September 2026",
     "category": "Inovasi ICT",
-    "summary": "Langkah demi langkah cara saya memanfaatkan Google Sheets dan HTML untuk memudahkan semakan maklumat murid di makmal komputer."
+    "summary": "Langkah demi langkah cara saya memanfaatkan Google Sheets dan HTML untuk memudahkan semakan maklumat murid di makmal komputer.",
+    "url": "artikel-database-murid.html"
   },
   {
     "id": 1,
     "title": "Modul Interaktif Sains: Memahami Konsep Tenaga",
     "date": "28 Ogos 2026",
     "category": "Bahan Sains",
-    "summary": "Koleksi nota visual dan kuiz ringkas yang boleh digunakan oleh guru-guru bagi silibus tahap dua."
+    "summary": "Koleksi nota visual dan kuiz ringkas yang boleh digunakan oleh guru-guru bagi silibus tahap dua.",
+    "url": "artikel-modul-sains.html"
   }
 ]
