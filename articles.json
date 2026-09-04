@@ -1,0 +1,18 @@
+[
+  {
+    "id": 2,
+    "title": "Pelancaran Siri Game Latihan Sains",
+    "date": "4 September 2026",
+    "category": "Modul Baharu",
+    "summary": "Game interaktif menguji konsep sains asas murid sekolah rendah kini boleh ditebus menggunakan baucar Shopee.",
+    "badgeColor": "bg-emerald-100 text-emerald-800"
+  },
+  {
+    "id": 1,
+    "title": "Panduan Penebusan Baucar Portal",
+    "date": "25 Ogos 2026",
+    "category": "Panduan",
+    "summary": "Langkah demi langkah cara ibu bapa memasukkan kod baucar Shopee untuk mengaktifkan akses permainan anak di rumah.",
+    "badgeColor": "bg-indigo-100 text-indigo-800"
+  }
+]
