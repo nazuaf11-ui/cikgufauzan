@@ -1,18 +1,16 @@
 [
   {
     "id": 2,
-    "title": "Pelancaran Siri Game Latihan Sains",
+    "title": "Membina Sistem Pengkalan Data Murid Menggunakan Apps Script",
     "date": "4 September 2026",
-    "category": "Modul Baharu",
-    "summary": "Game interaktif menguji konsep sains asas murid sekolah rendah kini boleh ditebus menggunakan baucar Shopee.",
-    "badgeColor": "bg-emerald-100 text-emerald-800"
+    "category": "Inovasi ICT",
+    "summary": "Langkah demi langkah cara saya memanfaatkan Google Sheets dan HTML untuk memudahkan semakan maklumat murid di makmal komputer."
   },
   {
     "id": 1,
-    "title": "Panduan Penebusan Baucar Portal",
-    "date": "25 Ogos 2026",
-    "category": "Panduan",
-    "summary": "Langkah demi langkah cara ibu bapa memasukkan kod baucar Shopee untuk mengaktifkan akses permainan anak di rumah.",
-    "badgeColor": "bg-indigo-100 text-indigo-800"
+    "title": "Modul Interaktif Sains: Memahami Konsep Tenaga",
+    "date": "28 Ogos 2026",
+    "category": "Bahan Sains",
+    "summary": "Koleksi nota visual dan kuiz ringkas yang boleh digunakan oleh guru-guru bagi silibus tahap dua."
   }
 ]
