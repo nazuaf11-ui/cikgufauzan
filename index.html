@@ -109,7 +109,7 @@
   </footer>
 
   <!-- Pembaca JSON Dinamik -->
-  <script>
+    <script>
     async function loadArticles() {
       const container = document.getElementById('articles-container');
       try {
@@ -118,7 +118,7 @@
         const articles = await res.json();
 
         container.innerHTML = articles.map(item => `
-          <article class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow flex flex-col justify-between hover:-translate-y-1 transition-transform cursor-pointer">
+          <a href="${item.url}" class="bg-white border-2 border-slate-900 rounded-xl p-5 hard-shadow flex flex-col justify-between hover:-translate-y-1 transition-transform block">
             <div>
               <div class="flex items-center justify-between text-xs font-mono mb-3">
                 <span class="bg-slate-100 text-slate-900 border border-slate-900 font-bold px-2 py-0.5 rounded">
@@ -133,7 +133,7 @@
               <span>Baca penuh</span>
               <span>→</span>
             </div>
-          </article>
+          </a>
         `).join('');
 
       } catch (err) {
@@ -144,6 +144,10 @@
         `;
       }
     }
+
+    loadArticles();
+  </script>
+
 
     loadArticles();
   </script>
