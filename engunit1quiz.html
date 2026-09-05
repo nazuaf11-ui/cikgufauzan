@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Explorer Quiz - Year 4 English</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FFFDF9; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .hard-shadow { box-shadow: 4px 4px 0px #0f172a; }
+    .hard-shadow-sm { box-shadow: 2px 2px 0px #0f172a; }
+    .hard-shadow-lg { box-shadow: 6px 6px 0px #0f172a; }
+    .btn-press:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px #0f172a; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 text-slate-900 relative">
+
+  <!-- Skrin Utama (Start Screen) -->
+  <div id="start-screen" class="max-w-2xl w-full bg-white border-4 border-slate-900 p-8 rounded-2xl hard-shadow text-center">
+    <div class="text-6xl mb-4">🌍✈️</div>
+    <h1 class="font-display text-4xl font-bold mb-2">Global Explorer Quiz</h1>
+    <p class="text-slate-600 mb-6 font-bold">Module 1: Where are you from?</p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-sm text-left">
+      <div class="bg-amber-100 border-2 border-slate-900 p-3 rounded-xl hard-shadow-sm">✅ 10 Multiple Choice</div>
+      <div class="bg-emerald-100 border-2 border-slate-900 p-3 rounded-xl hard-shadow-sm">✍️ 5 Match & Write</div>
+      <div class="bg-blue-100 border-2 border-slate-900 p-3 rounded-xl hard-shadow-sm">🎧 5 Listen & Write</div>
+    </div>
+
+    <button onclick="startGame()" class="bg-[#0055FF] text-white font-display text-xl px-8 py-4 rounded-xl border-4 border-slate-900 hard-shadow btn-press w-full sm:w-auto">
+      START ADVENTURE 🚀
+    </button>
+  </div>
+
+  <!-- Skrin Permainan (Game Screen) -->
+  <div id="game-screen" class="max-w-2xl w-full hidden">
+    
+    <!-- Header: Progress & Score -->
+    <div class="flex justify-between items-center bg-white border-4 border-slate-900 p-4 rounded-xl hard-shadow-sm mb-6">
+      <div class="font-bold">Question: <span id="q-number" class="text-[#0055FF] font-display text-xl">1/20</span></div>
+      <div class="font-bold">Score: <span id="score" class="text-emerald-600 font-display text-xl">0</span></div>
+    </div>
+
+    <!-- Container Soalan -->
+    <div class="bg-white border-4 border-slate-900 p-6 sm:p-8 rounded-2xl hard-shadow mb-6 relative">
+      <div id="q-category" class="inline-block bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 font-mono uppercase"></div>
+      
+      <h2 id="q-text" class="text-2xl sm:text-3xl font-bold font-display leading-snug mb-6">Question text here?</h2>
+      
+      <!-- Ruangan untuk Listen & Write -->
+      <div id="audio-container" class="hidden mb-6 text-center bg-blue-50 border-2 border-slate-900 p-4 rounded-xl">
+        <p class="text-sm font-bold text-slate-600 mb-2">Turn on your volume and click play!</p>
+        <button onclick="playAudio()" class="bg-amber-400 text-slate-900 font-bold text-lg px-6 py-3 rounded-xl border-2 border-slate-900 hard-shadow-sm btn-press flex items-center justify-center gap-2 mx-auto">
+          <span>🔊</span> Play Audio
+        </button>
+      </div>
+
+      <!-- Ruangan untuk Jawapan -->
+      <div id="answer-container" class="grid grid-cols-1 gap-4">
+        <!-- Pilihan ganda atau kotak teks akan diisi oleh JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Skrin Keputusan (Result Screen) -->
+  <div id="result-screen" class="max-w-2xl w-full bg-white border-4 border-slate-900 p-8 rounded-2xl hard-shadow text-center hidden">
+    <div class="text-6xl mb-4" id="result-emoji">🏆</div>
+    <h1 class="font-display text-4xl font-bold mb-2">Quiz Completed!</h1>
+    <p class="text-slate-600 mb-6 font-bold">Here is your final score:</p>
+    
+    <div class="text-6xl font-display font-black text-[#0055FF] mb-8" id="final-score">0/20</div>
+
+    <button onclick="location.reload()" class="bg-amber-400 text-slate-900 font-display text-xl px-8 py-4 rounded-xl border-4 border-slate-900 hard-shadow btn-press w-full sm:w-auto">
+      PLAY AGAIN 🔄
+    </button>
+  </div>
+
+  <!-- KOTAK NOTA PEMBETULAN (Feedback Modal) -->
+  <div id="feedback-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-slate-900 rounded-2xl max-w-lg w-full p-6 hard-shadow-lg relative">
+      <div class="flex items-center gap-3 mb-4 border-b-2 border-slate-200 pb-4">
+        <div class="text-4xl">💡</div>
+        <div>
+          <h3 class="font-display text-2xl font-bold text-red-600">Oops! Not quite right.</h3>
+          <p class="text-sm font-bold text-slate-500">Let's learn from this mistake.</p>
+        </div>
+      </div>
+      
+      <div class="space-y-3 mb-6">
+        <div class="bg-red-50 border-2 border-red-200 p-3 rounded-xl">
+          <span class="text-xs font-bold text-red-600 uppercase">Your Answer:</span>
+          <p id="feedback-wrong" class="font-bold text-slate-800 line-through"></p>
+        </div>
+        <div class="bg-emerald-50 border-2 border-emerald-200 p-3 rounded-xl">
+          <span class="text-xs font-bold text-emerald-600 uppercase">Correct Answer:</span>
+          <p id="feedback-correct" class="font-bold text-emerald-700 text-lg"></p>
+        </div>
+        <div class="bg-amber-100 border-2 border-slate-900 p-4 rounded-xl hard-shadow-sm mt-4">
+          <span class="text-xs font-bold text-slate-900 uppercase flex items-center gap-2 mb-1">
+            <span>📝</span> Note to Remember:
+          </span>
+          <p id="feedback-note" class="font-bold text-slate-800 text-sm leading-relaxed"></p>
+        </div>
+      </div>
+
+      <button onclick="closeFeedbackAndNext()" class="bg-slate-900 text-white font-bold text-lg px-8 py-3 rounded-xl border-2 border-slate-900 hard-shadow-sm btn-press w-full">
+        I understand! Next Question ➡️
+      </button>
+    </div>
+  </div>
+
+  <!-- Sistem Bunyi Ralat/Berjaya -->
+  <audio id="sound-correct" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+  <audio id="sound-wrong" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+
+  <script>
+    // --- DATABASE SOALAN DENGAN NOTA PENJELASAN ---
+    const questions = [
+      // BAHAGIAN 1: 10 MCQ
+      { type: "mcq", category: "Countries & Nationalities", text: "He is from the UK. He is _________.", options: ["American", "British", "Malaysian"], answer: "British", 
+        note: "The UK stands for the United Kingdom. People from the UK are called British." },
+      { type: "mcq", category: "Countries & Nationalities", text: "🇲🇽 She is from Mexico. She is _________.", options: ["Mexican", "Brazilian", "Spanish"], answer: "Mexican", 
+        note: "People from Mexico are called Mexican. Just add '-n' at the back!" },
+      { type: "mcq", category: "Countries & Nationalities", text: "🇰🇷 Jimin is from _________. He is Korean.", options: ["China", "Japan", "Korea"], answer: "Korea", 
+        note: "Jimin is 'Korean', so his country must be Korea." },
+      { type: "mcq", category: "Present Continuous", text: "Cikgu Fauzan _________ teaching English at SK Seri Selangor.", options: ["am", "is", "are"], answer: "is", 
+        note: "Use 'is' for one person (He/She). Cikgu Fauzan is one person." },
+      { type: "mcq", category: "Present Continuous", text: "The students _________ running on the school field.", options: ["am", "is", "are"], answer: "are", 
+        note: "Use 'are' for many people. 'Students' (with 's') means more than one person." },
+      { type: "mcq", category: "Present Continuous", text: "I _________ doing my homework in the library.", options: ["am", "is", "are"], answer: "am", 
+        note: "Always use 'am' when you talk about yourself ('I'). I am = I'm." },
+      { type: "mcq", category: "Time", text: "🕒 What time is it?", options: ["Quarter past three", "Three o'clock", "Half past three"], answer: "Three o'clock", 
+        note: "When the long minute hand is pointing exactly at 12, we say 'o'clock'." },
+      { type: "mcq", category: "Time", text: "🕧 What time is it?", options: ["Half past twelve", "Quarter to twelve", "Twelve o'clock"], answer: "Half past twelve", 
+        note: "When the long minute hand is on 6 (30 minutes), we say 'half past'." },
+      { type: "mcq", category: "Reading", text: "Azlan and his friends are playing futsal at the court. What are they doing?", options: ["Eating lunch", "Playing a sport", "Reading books"], answer: "Playing a sport", 
+        note: "Futsal is a type of sport. So, they are playing a sport." },
+      { type: "mcq", category: "Reading", text: "Amanda is from Brazil. She is a ____________.", options: ["Brazil", "Brazilians", "Brazilian"], answer: "Brazilian", 
+        note: "She is one person from Brazil, so we call her 'a Brazilian' (without 's')." },
+
+      // BAHAGIAN 2: 5 MATCH & WRITE
+      { type: "write", category: "Match & Write", text: "Match the country to the nationality.<br><br>Country: <b>China</b><br>Nationality: ____________", answer: "chinese", placeholder: "Type the nationality", 
+        note: "People from China are called Chinese." },
+      { type: "write", category: "Match & Write", text: "Write the time in words.<br><br><b>10:30</b> = Half past ____________", answer: "ten", placeholder: "Type the word", 
+        note: "30 minutes is 'half past'. The hour is 10. So, it is half past ten." },
+      { type: "write", category: "Match & Write", text: "Match the country to the nationality.<br><br>Country: <b>Malaysia</b><br>Nationality: ____________", answer: "malaysian", placeholder: "Type the nationality", 
+        note: "People from Malaysia are called Malaysian." },
+      { type: "write", category: "Match & Write", text: "Write the correct Present Continuous verb.<br><br>We (play) ____________ futsal today.", answer: "are playing", placeholder: "Type two words", 
+        note: "For 'We' (many), we use 'are'. Don't forget to add '-ing' to the verb (play + ing = are playing)." },
+      { type: "write", category: "Match & Write", text: "Match the time in words.<br><br><b>9:45</b> = ____________ to ten", answer: "quarter", placeholder: "Type the missing word", 
+        note: "45 minutes means there are 15 minutes left to the next hour. 15 minutes is a 'quarter'." },
+
+      // BAHAGIAN 3: 5 LISTEN & WRITE
+      { type: "listen", category: "Listen & Write", text: "Listen to the audio. Type the <b>nationality</b> you hear.", audioText: "Hello, my name is Sarah. I am from the US. I am American.", answer: "american", placeholder: "Type the nationality", 
+        note: "The audio said 'I am American'. People from the US are called American." },
+      { type: "listen", category: "Listen & Write", text: "Listen to the time. Type the time in numbers (e.g., 2:30).", audioText: "The class starts at half past four.", answer: "4:30", placeholder: "Type the time (numbers)", 
+        note: "'Half past' means 30 minutes. So, half past four is 4:30." },
+      { type: "listen", category: "Listen & Write", text: "Listen to the audio. What is the boy doing?", audioText: "He is swimming in the pool.", answer: "swimming", placeholder: "Type the action word", 
+        note: "The audio clearly said 'He is swimming in the pool'." },
+      { type: "listen", category: "Listen & Write", text: "Listen to the audio. Type the <b>country</b> you hear.", audioText: "My friend is from Singapore.", answer: "singapore", placeholder: "Type the country", 
+        note: "The correct spelling for the country mentioned is S-I-N-G-A-P-O-R-E." },
+      { type: "listen", category: "Listen & Write", text: "Listen and fill in the blank.<br><br>They are ____________ their homework.", audioText: "They are doing their homework.", answer: "doing", placeholder: "Type the missing word", 
+        note: "The audio said 'They are doing their homework'." }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let currentAudioText = "";
+
+    // --- GAME LOGIC ---
+    function startGame() {
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('game-screen').classList.remove('hidden');
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const q = questions[currentQ];
+      document.getElementById('q-number').innerText = `${currentQ + 1}/${questions.length}`;
+      document.getElementById('q-category').innerText = q.category;
+      document.getElementById('q-text').innerHTML = q.text;
+      
+      const ansContainer = document.getElementById('answer-container');
+      const audioContainer = document.getElementById('audio-container');
+      ansContainer.innerHTML = '';
+      
+      if (q.type === "mcq") {
+        audioContainer.classList.add('hidden');
+        q.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.innerText = opt;
+          btn.className = "bg-white border-2 border-slate-900 text-slate-900 font-bold text-lg px-6 py-4 rounded-xl hard-shadow-sm hover:bg-slate-50 btn-press text-left";
+          btn.onclick = () => checkAnswer(opt, q.answer, q.note);
+          ansContainer.appendChild(btn);
+        });
+      } 
+      else if (q.type === "write" || q.type === "listen") {
+        if (q.type === "listen") {
+          audioContainer.classList.remove('hidden');
+          currentAudioText = q.audioText;
+        } else {
+          audioContainer.classList.add('hidden');
+        }
+
+        const inputRow = document.createElement('div');
+        inputRow.className = "flex flex-col sm:flex-row gap-3";
+        
+        const inputField = document.createElement('input');
+        inputField.type = "text";
+        inputField.id = "user-input";
+        inputField.placeholder = q.placeholder;
+        inputField.className = "flex-1 border-2 border-slate-900 px-4 py-3 rounded-xl text-lg outline-none focus:bg-amber-50";
+        inputField.autocomplete = "off";
+
+        const submitBtn = document.createElement('button');
+        submitBtn.innerText = "SUBMIT";
+        submitBtn.className = "bg-emerald-500 text-white font-bold text-lg px-8 py-3 rounded-xl border-2 border-slate-900 hard-shadow-sm btn-press";
+        submitBtn.onclick = () => {
+          const userAnswer = document.getElementById('user-input').value;
+          if(userAnswer.trim() === "") return; // Jangan benarkan hantar kosong
+          checkAnswer(userAnswer, q.answer, q.note);
+        };
+
+        // Enter untuk Submit
+        inputField.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            submitBtn.click();
+          }
+        });
+
+        inputRow.appendChild(inputField);
+        inputRow.appendChild(submitBtn);
+        ansContainer.appendChild(inputRow);
+        
+        setTimeout(() => inputField.focus(), 100);
+      }
+    }
+
+    function playAudio() {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(currentAudioText);
+        utterance.lang = 'en-GB'; 
+        utterance.rate = 0.9;     
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("Sorry, your browser does not support audio playback.");
+      }
+    }
+
+    function checkAnswer(userAns, correctAns, note) {
+      const cleanUserAns = userAns.toString().trim().toLowerCase();
+      const cleanCorrectAns = correctAns.toString().toLowerCase();
+      const isCorrect = cleanUserAns === cleanCorrectAns;
+      
+      if (isCorrect) {
+        // JIKA BETUL
+        score++;
+        document.getElementById('score').innerText = score;
+        document.getElementById('sound-correct').play();
+        goToNextQuestion();
+      } else {
+        // JIKA SALAH -> Buka Kotak Nota
+        document.getElementById('sound-wrong').play();
+        
+        document.getElementById('feedback-wrong').innerText = userAns || "(Blank)";
+        document.getElementById('feedback-correct').innerText = correctAns;
+        document.getElementById('feedback-note').innerText = note;
+        
+        document.getElementById('feedback-modal').classList.remove('hidden');
+      }
+    }
+
+    function closeFeedbackAndNext() {
+      document.getElementById('feedback-modal').classList.add('hidden');
+      goToNextQuestion();
+    }
+
+    function goToNextQuestion() {
+      currentQ++;
+      if (currentQ < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById('game-screen').classList.add('hidden');
+      document.getElementById('result-screen').classList.remove('hidden');
+      document.getElementById('final-score').innerText = `${score}/${questions.length}`;
+      
+      let emoji = "🏆";
+      if(score <= 10) emoji = "💪";
+      if(score === 20) emoji = "🌟";
+      document.getElementById('result-emoji').innerText = emoji;
+    }
+  </script>
+</body>
+</html>
